@@ -13,4 +13,13 @@ cmake CMakeLists.txt && make
 ./easy-overlay
 ```
 
+### Usage
+```shell
+USAGE: ez_overlay [OPTIONS]
+  OPTIONS
+    --help   Display this message
+    -mid     The mouse device id
+    -kid     The keyboard device id
+```
+
 ![overlay](image.png)

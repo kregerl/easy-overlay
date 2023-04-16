@@ -42,7 +42,6 @@ int register_events(Display* display, XDeviceInfo device_info) {
                     break;
                 }
                 case ButtonClass: {
-                    printf("ButtonClass\n");
                     DeviceButtonPress(device, button_press_type, event_list[num_events])
                     num_events++;
                     DeviceButtonRelease(device, button_release_type, event_list[num_events])
@@ -160,7 +159,7 @@ void lookup_x11_keycode(Display* display, int keycode, char buffer[32]) {
     Xutf8LookupString(xic, &event, buffer, 32, &ignore, &return_status);
 }
 
-void init() {
+void init(int mouse_id, int keyboard_id) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         fprintf(stderr, "Could not initialize SDL2: %s\n", SDL_GetError());
         return;
@@ -203,18 +202,19 @@ void init() {
         exit(EXIT_FAILURE);
     }
 
-    // Prompt user to select device
-    int id = 10;
+    // Prompt user to select keyboard device
     XDeviceInfo info;
-    if (id < 0) {
+    if (keyboard_id < 0) {
+        printf("Select a keyboard device.");
         info = prompt_device_selection(display);
     } else {
-        info = get_device_info(display, id);
+        info = get_device_info(display, keyboard_id);
     }
 
-    int mouse_id = 13;
+    // Prompt user to select mouse device
     XDeviceInfo mouse_info;
-    if (id < 0) {
+    if (mouse_id < 0) {
+        printf("Select a mouse device.");
         mouse_info = prompt_device_selection(display);
     } else {
         mouse_info = get_device_info(display, mouse_id);

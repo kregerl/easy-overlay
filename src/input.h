@@ -6,7 +6,7 @@
 
 extern int xi_opcode;
 
-void init();
+void init(int mouse_id, int keyboard_id);
 
 void lookup_x11_keycode(Display* display, int keycode, char* buffer);
 
