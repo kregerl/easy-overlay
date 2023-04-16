@@ -231,7 +231,7 @@ void render_keys(Display* display, SDL_Renderer* renderer, const bool held_keys[
         exit(1);
     }
 
-
+    // This sucks but it'll do
     render_tilde_row(display, renderer, font, held_keys);
     render_tab_row(display, renderer, font, held_keys);
     render_capslock_row(display, renderer, font, held_keys);
